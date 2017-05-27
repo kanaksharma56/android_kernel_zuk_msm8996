@@ -1,4 +1,4 @@
-dtb-$(CONFIG_ARCH_MSM8996) += msm8996-v3-pmi8996-mtp.dtb
+dtb-$(CONFIG_ARCH_MSM8996) += stock.dtb
 
 
 dtb-$(CONFIG_ARCH_MSMCOBALT) += msmcobalt-sim.dtb \
