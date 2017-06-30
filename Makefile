@@ -299,7 +299,7 @@ CCACHE := $(shell which ccache)
 
 HOSTCC       = $(CCACHE) gcc
 HOSTCXX      = $(CCACHE) g++
-HOSTCFLAGS   = -Wall -Wmissing-prototypes -Wstrict-prototypes -O3 -fomit-frame-pointer -fgcse-las -fgraphite -floop-parallelize-all -ftree-loop-linear -floop-interchange -floop-strip-mine -floop-block -pipe -Wno-unused-parameter -Wno-sign-compare -Wno-missing-field-initializers -Wno-unused-variable -Wno-unused-value
+HOSTCFLAGS   = -Wall -Wmissing-prototypes -Wstrict-prototypes -O3 -fomit-frame-pointer -fgcse-las -fgraphite -floop-parallelize-all -ftree-loop-linear -floop-interchange -floop-strip-mine -floop-block -pipe -Wno-sign-compare -Wno-missing-field-initializers
 HOSTCXXFLAGS = -O3 -fgcse-las -fgraphite -floop-parallelize-all -ftree-loop-linear -floop-interchange -floop-strip-mine -floop-block -pipe
 
 ifeq ($(shell $(HOSTCC) -v 2>&1 | grep -c "clang version"), 1)
@@ -438,7 +438,6 @@ KBUILD_CFLAGS   := $(GRAPHITE) -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs 
 		   -Wno-incompatible-pointer-types \
 		   -Wno-bool-compare \
 		   -Wno-memset-transposed-args \
-		   -Wno-unused-const-variable \
 		   -Wno-misleading-indentation \
 		   -Wno-tautological-compare \
 		   -Wno-declaration-after-statement \
@@ -697,8 +696,6 @@ KBUILD_CFLAGS += $(GRAPHITE)
 KBUILD_CFLAGS += $(OPTIMIZFLAGS)
 KBUILD_CFLAGS += $(O3-ADDS-ONLY)
 KBUILD_CFLAGS += $(call cc-disable-warning,array-bounds) -fmodulo-sched-allow-regmoves -fno-tree-vectorize -Wno-array-bounds
-KBUILD_CFLAGS += $(call cc-disable-warning,unused-function)
-KBUILD_CFLAGS += $(call cc-disable-warning, unused-variable) 
 endif
 
 # Disable all maybe-uninitialized warnings
