@@ -690,17 +690,19 @@ KBUILD_CFLAGS   += $(call cc-disable-warning,format-truncation,)
 KBUILD_CFLAGS   += $(call cc-disable-warning,misleading-indentation,)
 
 ifdef CONFIG_CC_OPTIMIZE_FOR_SIZE
-KBUILD_CFLAGS	+= -Os $(call cc-disable-warning,maybe-uninitialized,)
+KBUILD_CFLAGS	+= -Os 
 else
 KBUILD_CFLAGS += -Os 
 KBUILD_CFLAGS += $(GRAPHITE)
 KBUILD_CFLAGS += $(OPTIMIZFLAGS)
 KBUILD_CFLAGS += $(O3-ADDS-ONLY)
-KBUILD_CFLAGS += $(call cc-disable-warning,maybe-uninitialized,)
-KBUILD_CFLAGS += $(call cc-disable-warning,array-bounds) -fmodulo-sched-allow-regmoves -fno-tree-vectorize -Wno-array-bounds -Wno-error=maybe-uninitialized -Wno-maybe-uninitialized
+KBUILD_CFLAGS += $(call cc-disable-warning,array-bounds) -fmodulo-sched-allow-regmoves -fno-tree-vectorize -Wno-array-bounds
 KBUILD_CFLAGS += $(call cc-disable-warning,unused-function)
 KBUILD_CFLAGS += $(call cc-disable-warning, unused-variable) 
 endif
+
+# Disable all maybe-uninitialized warnings
+KBUILD_CFLAGS	+= $(call cc-disable-warning,maybe-uninitialized,)
 
 # Tell gcc to never replace conditional load with a non-conditional one
 KBUILD_CFLAGS	+= $(call cc-option,--param=allow-store-data-races=0)
